@@ -50,9 +50,7 @@ export const Editar = () => {
     }
 
     try {
-      const response = await api.get('/Produto/BuscarProduto', {
-        params: { id: idBusca }
-      });
+      const response = await api.get(`/Estoque/BuscarPorId/${idBusca}`);
 
       if (!response.data || Object.keys(response.data).length === 0) {
         setSnackbarMessage('Produto não encontrado.');

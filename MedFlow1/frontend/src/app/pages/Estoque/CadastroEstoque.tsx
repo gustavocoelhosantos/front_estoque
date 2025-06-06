@@ -10,14 +10,10 @@ import {
   FormControlLabel,
   FormLabel,
   FormControl,
-  Paper,
-  Snackbar,
-  Alert,
 } from '@mui/material';
 
 export const CadastroEstoque = () => {
   const [formData, setFormData] = useState({
-    id: '',
     nome: '',
     unidade_medida: '',
     valor: '',
@@ -25,10 +21,8 @@ export const CadastroEstoque = () => {
     data_pedido: '',
     validade: '',
     embalagem: '',
-    tipo: '',
+    tipo: '', 
   });
-
-  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,170 +33,131 @@ export const CadastroEstoque = () => {
     e.preventDefault();
     console.log('Dados enviados:', formData);
 
-    setOpenSnackbar(true);
-    setFormData({
-      id: '',
-      nome: '',
-      unidade_medida: '',
-      valor: '',
-      fornecedor: '',
-      data_pedido: '',
-      validade: '',
-      embalagem: '',
-      tipo: '',
-    }); 
-  };
-
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
-      <Paper elevation={4} sx={{ p: 4, width: '100%', maxWidth: 700 }}>
-        <Typography variant="h4" gutterBottom textAlign="center">
-          Registrar Produto
-        </Typography>
-
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-        
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="ID"
-                name="id"
-                value={formData.id}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Nome"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Valor"
-                name="valor"
-                type="number"
-                value={formData.valor}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Fornecedor"
-                name="fornecedor"
-                value={formData.fornecedor}
-                onChange={handleChange}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Data do Pedido"
-                name="data_pedido"
-                type="date"
-                value={formData.data_pedido}
-                onChange={handleChange}
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Validade"
-                name="validade"
-                type="date"
-                value={formData.validade}
-                onChange={handleChange}
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Embalagem"
-                name="embalagem"
-                value={formData.embalagem}
-                onChange={handleChange}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Unidade de Medida"
-                name="unidade_medida"
-                value={formData.unidade_medida}
-                onChange={handleChange}
-                fullWidth
-              />
-            </Grid>
-
+    <Box sx={{ maxWidth: 600, margin: 'auto', padding: 3 }}>
+      <Typography variant="h4" gutterBottom>
+        Registrar Produto
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={3}>
             <Grid item xs={12}>
-              <FormControl component="fieldset" fullWidth>
-                <FormLabel component="legend">Temperatura</FormLabel>
-                <RadioGroup
-                  row
-                  name="tipo"
-                  value={formData.tipo}
-                  onChange={handleChange}
-                >
-                  <FormControlLabel value="Perecível" control={<Radio />} label="Perecível" />
-                  <FormControlLabel value="Resfriado" control={<Radio />} label="Resfriado" />
-                  <FormControlLabel value="Termossensível" control={<Radio />} label="Termossensível" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                fullWidth
-                sx={{ py: 1.5 }}
-              >
-                Cadastrar Produto
-              </Button>
-            </Grid>
+            <TextField
+              label="Nome"
+              variant="outlined"
+              fullWidth
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+              required
+            />
           </Grid>
-        </form>
-      </Paper>
 
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert severity="success" variant="filled" onClose={handleCloseSnackbar}>
-          Produto cadastrado com sucesso!
-        </Alert>
-      </Snackbar>
+
+          <Grid item xs={12}>
+            <TextField
+              label="Valor"
+              variant="outlined"
+              fullWidth
+              type="number"
+              name="valor"
+              value={formData.valor}
+              onChange={handleChange}
+              InputLabelProps={{ shrink: true }}
+              required
+            />
+          </Grid>
+
+
+          <Grid item xs={12}>
+            <TextField
+              label="Fornecedor"
+              variant="outlined"
+              fullWidth
+              name="fornecedor"
+              value={formData.fornecedor}
+              onChange={handleChange}
+            />
+          </Grid>
+
+   
+          <Grid item xs={12}>
+            <TextField
+              label="Data do Pedido"
+              variant="outlined"
+              fullWidth
+              type="date"
+              name="data_pedido"
+              value={formData.data_pedido}
+              onChange={handleChange}
+              InputLabelProps={{ shrink: true }}
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              label="Validade"
+              variant="outlined"
+              fullWidth
+              type="date"
+              name="validade" 
+              value={formData.validade}
+              onChange={handleChange}
+              InputLabelProps={{ shrink: true }}
+              required
+            />
+          </Grid>
+
+
+          <Grid item xs={12}>
+            <TextField
+              label="Embalagem"
+              variant="outlined"
+              fullWidth
+              name="embalagem" 
+              value={formData.embalagem}
+              onChange={handleChange}
+            />
+          </Grid>
+
+
+          <Grid item xs={12}>
+            <TextField
+              label="Unidade de Medida"
+              variant="outlined"
+              fullWidth
+              name="unidade_medida"
+              value={formData.unidade_medida}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          {/* Tipo (Temperatura) */}
+          <Grid item xs={12}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Temperatura</FormLabel>
+              <RadioGroup
+                row
+                name="tipo"  
+                value={formData.tipo}
+                onChange={handleChange}
+              >
+                <FormControlLabel value="PERECIVEL" control={<Radio />} label="Perecível" />
+                <FormControlLabel value="RESFRIADO" control={<Radio />} label="Resfriado" />
+                <FormControlLabel value="TERMOSSENSIVEL" control={<Radio />} label="Termossensível" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button variant="contained" color="primary" type="submit">
+              Cadastrar
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
     </Box>
   );
 };
-
-
-
-
-
-
